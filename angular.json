@@ -126,6 +126,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "BootstrapFormsAndValidation"
+    }
+  },
+  "defaultProject": "BootstrapFormsAndValidation",
+  "cli": {
+    "analytics": "d4603755-bb9c-4810-9ff5-87d26d2de8e2"
+  }
 }
