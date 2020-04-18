@@ -1,1 +1,92 @@
-<button class="btn btn-primary">test</button>
+<div class="container mt-5">
+  <div class="form-group">
+  <form
+    #cadastro = "ngForm"
+    (submit) = "save();">
+
+    <label for = "name">Nome</label>
+    <input type="text"
+      id = "name"
+      name = "name"
+      class = "form-control"
+      [(ngModel)] = "name"
+      #nameInput = "ngModel"
+      required
+      [class.is-invalid]="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+      
+      <small class="form-text text-muted" 
+        *ngIf="!(nameInput.invalid && (nameInput.dirty || nameInput.touched))">
+        Informe o nome completo
+      </small>
+      
+      <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)"
+            class="invalid-feedback">
+        <span *ngIf="nameInput.errors.required">
+          Você precisa informar o nome
+        </span>
+      </div>
+
+    <label for = "nascimento">Nascimento</label>
+    <input type="date"
+      id = "birth"
+      name = "birth"
+      class = "form-control"
+      [(ngModel)] = "birth"
+      #birthInput = "ngModel"
+      required>
+      
+    <label for = "sex">Sexo</label>
+    <div class="radio">
+      <label><input type="radio" name="sex" checked>Masculino</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="sex">Feminino</label>
+    </div>
+
+    <label for = "cpf">CPF</label>
+    <input type="text"
+      id = "cpf"
+      name = "cpf"
+      class = "form-control"
+      [(ngModel)] = "cpf"
+      #cpfInput = "ngModel"
+      required
+      [class.is-invalid]="cpfInput.invalid && (cpfInput.dirty || cpfInput.touched)">
+      
+      <small class="form-text text-muted" 
+        *ngIf="!(cpfInput.invalid && (cpfInput.dirty || cpfInput.touched))">
+        Informe o CPF
+      </small>
+      
+      <div *ngIf="cpfInput.invalid && (cpfInput.dirty || cpfInput.touched)"
+            class="invalid-feedback">
+        <span *ngIf="cpfInput.errors.required">
+          Você precisa informar o CPF
+        </span>
+       
+      </div>
+
+    <label for = "email">E-Mail</label>
+    <input type="email"
+      id = "email"
+      name = "email"
+      class = "form-control"
+      [(ngModel)] = "email"
+      required>
+
+    <label for = "phone">Telefone</label>
+    <input type="number"
+      id = "phone"
+      name = "phone"
+      class = "form-control"
+      [(ngModel)] = "phone"
+      required>
+    
+    <button class="btn btn-primary"
+      [disabled]="cadastro.invalid">
+      Salvar
+    </button>
+
+  </form>
+  </div>
+</div>

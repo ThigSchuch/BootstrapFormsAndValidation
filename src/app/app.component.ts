@@ -9,4 +9,14 @@ export class AppComponent {
   title = 'BootstrapFormsAndValidation';
 
   people = []
+  name;
+  birth;
+  cpf;
+  email;
+  phone;
+
+  save(){
+    console.log();
+  }
+
 }
