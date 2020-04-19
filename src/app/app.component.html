@@ -1,10 +1,5 @@
 <div class="container mt-5">
-  <div class="form-group">
-  <form
-    #cadastro = "ngForm"
-    (submit) = "save();">
-
-    
+  <form #cadastro="ngForm" (ngSubmit)="save()" [formGroup]="form">
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for = "name">Nome</label>
@@ -12,18 +7,13 @@
           id = "name"
           name = "name"
           class = "form-control"
-          [(ngModel)] = "name"
-          #nameInput = "ngModel"
-          required
-          placeholder = "Joãozinho"
-          [class.is-invalid]="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
-              
-          <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)"
-                class="invalid-feedback">
-            <span *ngIf="nameInput.errors.required">
-              Você precisa informar o nome
-            </span>
-          </div>
+          placeholder = "Nome"
+          formControlName="name"
+          required>
+
+          <small *ngIf="form.controls.name.invalid && !form.controls.name.pristine" class="text-danger">
+            Você precisa informar o nome<br />
+          </small>
       </div>
 
       <div class="form-group col-md-4">
@@ -31,9 +21,8 @@
         <input type="date"
           id = "birth"
           name = "birth"
-          class = "form-control"
-          [(ngModel)] = "birth"
-          #birthInput = "ngModel"
+          class="form-control"
+          formControlName="birth"
           required>
       </div>
 
@@ -43,37 +32,41 @@
           id = "cpf"
           name = "cpf"
           class = "form-control"
-          [(ngModel)] = "cpf"
-          #cpfInput = "ngModel"
-          minlength = "14"
           maxlength = "14"
-          required
           placeholder = "012.345.678-90"
-          [class.is-invalid]="cpfInput.invalid && (cpfInput.dirty || cpfInput.touched)">
-          
-          <div *ngIf="cpfInput.invalid && (cpfInput.dirty || cpfInput.touched)"
-                class="invalid-feedback">
-            <span *ngIf="cpfInput.errors.required">
-              Você precisa informar o CPF
-            </span>
-    
-            <span *ngIf="cpfInput.errors.minlength">
-              Seu CPF deve ter 14 dígitos
-            </span>
-           
-          </div>
+          formControlName="cpf"
+          required>
+
+          <small *ngIf="form.controls.cpf.invalid && !form.controls.cpf.pristine" class="text-danger">
+            Seu CPF deve ter 14 dígitos <br />
+          </small>
+
       </div>
     </div>
 
 
     <div class="form-row mt-3">
       <div class="form-group col-md-2">
-        <label for = "sex">Sexo</label>
-        <div class="radio">
-          <label><input type="radio" name="sex"> Masculino</label>
+        <label>Sexo</label>
+        <div class="custom-control custom-radio">
+          <input
+            type="radio"
+            id="masculinoRadio"
+            name="sex"
+            value="Masculino"
+            class="custom-control-input"
+            formControlName="sex">
+          <label class="custom-control-label" for="masculinoRadio">Masculino</label>
         </div>
-        <div class="radio">
-          <label><input type="radio" name="sex"> Feminino</label>
+        <div class="custom-control custom-radio">
+          <input
+            type="radio"
+            id="femininoRadio"
+            name="sex"
+            value="Feminino"
+            class="custom-control-input"
+            formControlName="sex">
+          <label class="custom-control-label" for="femininoRadio">Feminino</label>
         </div>
       </div>
 
@@ -83,8 +76,8 @@
           id = "email"
           name = "email"
           class = "form-control"
-          [(ngModel)] = "email"
-          placeholder = "joao@rede.ulbra.br"
+          placeholder="exemplo@email.com.br"
+          formControlName="email"
           required>
       </div>
 
@@ -94,142 +87,125 @@
           id = "phone"
           name = "phone"
           class = "form-control"
-          [(ngModel)] = "phone"
           placeholder = "63 99278-7871"
+          formControlName="phone"
           required>
       </div>
     </div>
-      
 
     <div class="form-row mt-3">
       <div class="form-group col-md-12">
-        <label for = "endereco">Endereço</label>
+        <label for = "address">Endereço</label>
         <input type="text"
-          id = "endereco"
-          name = "endereco"
+          id = "address"
+          name = "address"
           class = "form-control"
-          [(ngModel)] = "endereco"
-          #enderecoInput = "ngModel"
-          required 
           minlength="30"
           placeholder = "Rua Paraopeba 360"
-          [class.is-invalid]="enderecoInput.invalid && (enderecoInput.dirty || enderecoInput.touched)">
-        
-          <div *ngIf="enderecoInput.invalid && (enderecoInput.dirty || enderecoInput.touched)"
-                class="invalid-feedback">
-            <span *ngIf="enderecoInput.errors.minlength">
-              Você precisa informar no mínimo 20 caracteres
-            </span>
-            <span *ngIf="enderecoInput.errors.required">
-              Você precisa informar o Endereço
-            </span>
-          </div>
+          formControlName = "address"
+          required>
+
+          <small *ngIf="form.controls.address.invalid && !form.controls.address.pristine" class="text-danger">
+            Este campo requer pelo menos 30 caracteres <br />
+          </small>
       </div>
     </div>
-
 
     <div class="form-row mt-3">
       <div class="form-group col-md-5">
         <label for = "cidade">Cidade</label>
-        <input type="text"
-            id = "cidade"
-            name = "cidade"
-            class = "form-control"
-            [(ngModel)] = "cidade"
-            #cidadeInput = "ngModel"
-            placeholder = "Palmas"
-            required 
-            [class.is-invalid]="cidadeInput.invalid && (cidadeInput.dirty || cidadeInput.touched)">
+        <input
+          type="text"
+          id = "cidade"
+          name = "cidade"
+          class = "form-control"
+          placeholder="Palmas"
+          formControlName="city"
+          required>
 
-          <div *ngIf="cidadeInput.invalid && (cidadeInput.dirty || cidadeInput.touched)"
-            class="invalid-feedback">
-          <span *ngIf="cidadeInput.errors.required">
-            Você precisa informar a Cidade
-          </span>
-        </div>
+        <small *ngIf="form.controls.city.invalid && !form.controls.city.pristine" class="text-danger">
+          Você precisa informar a Cidade <br />
+        </small>
       </div>
 
       <div class="form-group col-md-5">
         <label for = "cep">CEP</label>
-        <input type="number"
+        <input
+          type="number"
           id = "cep"
           name = "cep"
           class = "form-control"
-          [(ngModel)] = "cep"
-          #cepInput = "ngModel"
-          required
           placeholder = "77500-000"
-          [class.is-invalid]="cepInput.invalid && (cepInput.dirty || cepInput.touched)">
-        
-          <div *ngIf="cepInput.invalid && (cepInput.dirty || cepInput.touched)"
-                class="invalid-feedback">
-            <span *ngIf="cepInput.errors.required">
-              Você precisa informar o CEP
-            </span>
-          </div>
+          formControlName="cep"
+          required>
+
+          <small *ngIf="form.controls.city.invalid && !form.controls.city.pristine" class="text-danger">
+            Você precisa informar o CEP <br />
+          </small>
       </div>
 
       <div class="form-group col-md-2">
         <label for = "estado">Estado</label>
-        <select 
-            id = "estado"
-            name="estado"
-            class = "form-control"
-            [(ngModel)] = "estado"
-            #estadoInput = "ngModel">
-            <option *ngFor="let estado of uf">{{estado}}</option>
+        <select formControlName="uf" id="estado" name="estado" class = "form-control">
+            <option *ngFor="let code of uf" [value]="code">{{code}}</option>
         </select>
       </div>
     </div>
 
-
     <div class="form-row mt-3">
       <div class="form-group col-md-4">
         <label for="documentos">Documentos:</label>
-        <div class="form-check ml-4">
-        <input type="checkbox" class="form-check-input" id="documentos"
-            name = "documentos"
-            [(ngModel)]="documentos"  data-md-icheck (change)="checkboxTrue($event);">
-        <label class="form-check-label" for="documentos">Checados</label>
+        <div class="custom-control custom-checkbox ml-4">
+        <input type="checkbox" class="custom-control-input" id="documentos"
+            name = "documentos" formControlName="documentsValid" (click)="enableOrDisable()">
+        <label class="custom-control-label" for="documentos">Checados</label>
       </div>
       </div>
 
       <div class="form-group col-md-8">
         <label for = "turma">Turmas</label>
-        <select multiple
-            disabled={{!(documentos)}}
-            id = "turma"
-            name = "turma"
-            required 
-            class = "form-control"
-            [(ngModel)] = "turma"
-            #turmaInput = "ngModel"
-            [class.is-invalid]="turmaInput.invalid && (turmaInput.dirty || turmaInput.touched)">
-            <option *ngFor="let turma of turmas">{{turma.number}} - {{turma.name}}</option>
-            <div *ngIf="turmaInput.invalid && (turmaInput.dirty || turmaInput.touched)"
-                  class="invalid-feedback">
-            <span *ngIf="turmaInput.errors.required">
-                Você precisa informar alguma turma
-              </span>
-            </div>
+        <select
+          id = "turmas"
+          name = "turmas"
+          class = "form-control"
+          formControlName="turmas"
+          multiple required>
+          <option *ngFor="let turma of turmas">{{turma.number}} - {{turma.name}}</option>
         </select>
+
+        <small *ngIf="form.controls.turmas.invalid && !form.controls.turmas.pristine" class="text-danger">
+          Você precisa informar uma ou mais turma <br />
+        </small>
       </div>
     </div>
 
+    <div class="form-group float-right">
+      <button class="btn btn-secondary" type="button" (click)="onReset()" title="Limpar">
+        Limpar
+      </button>
 
-    <div class="text-center">
-      <div class="btn-group">
-        <button class="btn btn-primary mt-3"
-          [disabled]="cadastro.invalid">
-          Salvar
-        </button>
-
-        <button class="btn btn-secondary mt-3">
-          Limpar
-        </button>
-      </div>
+      <button class="btn btn-primary mx-1" type="submit" [disabled]="form.invalid" title="Salvar">
+          <li class="fas fa-save"></li> Salvar
+      </button>
     </div>
-
   </form>
-  </div>
+
+  <table class="table table-striped pt-5" *ngIf="students.length">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Idade</th>
+        <th scope="col">Sexo</th>
+        <th scope="col">Turmas</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let student of students">
+      <tr>
+        <td>{{ student.name }}</td>
+        <td>{{ calcAge(student.birth) }}</td>
+        <td>{{ student.sex }}</td>
+        <td>{{ student.turmas.join(', ') }};</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
