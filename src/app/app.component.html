@@ -4,168 +4,231 @@
     #cadastro = "ngForm"
     (submit) = "save();">
 
-    <label for = "name">Nome</label>
-    <input type="text"
-      id = "name"
-      name = "name"
-      class = "form-control"
-      [(ngModel)] = "name"
-      #nameInput = "ngModel"
-      required
-      [class.is-invalid]="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
-      
-      <small class="form-text text-muted" 
-        *ngIf="!(nameInput.invalid && (nameInput.dirty || nameInput.touched))">
-        Informe o nome completo
-      </small>
-      
-      <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)"
-            class="invalid-feedback">
-        <span *ngIf="nameInput.errors.required">
-          Você precisa informar o nome
-        </span>
+    
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for = "name">Nome</label>
+        <input type="text"
+          id = "name"
+          name = "name"
+          class = "form-control"
+          [(ngModel)] = "name"
+          #nameInput = "ngModel"
+          required
+          placeholder = "Joãozinho"
+          [class.is-invalid]="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+              
+          <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)"
+                class="invalid-feedback">
+            <span *ngIf="nameInput.errors.required">
+              Você precisa informar o nome
+            </span>
+          </div>
       </div>
 
-    <label for = "nascimento">Nascimento</label>
-    <input type="date"
-      id = "birth"
-      name = "birth"
-      class = "form-control"
-      [(ngModel)] = "birth"
-      #birthInput = "ngModel"
-      required>
-      
-    <label for = "sex">Sexo</label>
-    <div class="radio">
-      <label><input type="radio" name="sex" checked>Masculino</label>
-    </div>
-    <div class="radio">
-      <label><input type="radio" name="sex">Feminino</label>
-    </div>
-
-    <label for = "cpf">CPF</label>
-    <input type="text"
-      id = "cpf"
-      name = "cpf"
-      class = "form-control"
-      [(ngModel)] = "cpf"
-      #cpfInput = "ngModel"
-      required
-      [class.is-invalid]="cpfInput.invalid && (cpfInput.dirty || cpfInput.touched)">
-      
-      <small class="form-text text-muted" 
-        *ngIf="!(cpfInput.invalid && (cpfInput.dirty || cpfInput.touched))">
-        Informe o CPF
-      </small>
-      
-      <div *ngIf="cpfInput.invalid && (cpfInput.dirty || cpfInput.touched)"
-            class="invalid-feedback">
-        <span *ngIf="cpfInput.errors.required">
-          Você precisa informar o CPF
-        </span>
-       
+      <div class="form-group col-md-4">
+        <label for = "nascimento">Nascimento</label>
+        <input type="date"
+          id = "birth"
+          name = "birth"
+          class = "form-control"
+          [(ngModel)] = "birth"
+          #birthInput = "ngModel"
+          required>
       </div>
 
-    <label for = "email">E-Mail</label>
-    <input type="email"
-      id = "email"
-      name = "email"
-      class = "form-control"
-      [(ngModel)] = "email"
-      required>
+      <div class="form-group col-md-4">
+        <label for = "cpf">CPF</label>
+        <input type="text"
+          id = "cpf"
+          name = "cpf"
+          class = "form-control"
+          [(ngModel)] = "cpf"
+          #cpfInput = "ngModel"
+          minlength = "14"
+          maxlength = "14"
+          required
+          placeholder = "012.345.678-90"
+          [class.is-invalid]="cpfInput.invalid && (cpfInput.dirty || cpfInput.touched)">
+          
+          <div *ngIf="cpfInput.invalid && (cpfInput.dirty || cpfInput.touched)"
+                class="invalid-feedback">
+            <span *ngIf="cpfInput.errors.required">
+              Você precisa informar o CPF
+            </span>
+    
+            <span *ngIf="cpfInput.errors.minlength">
+              Seu CPF deve ter 14 dígitos
+            </span>
+           
+          </div>
+      </div>
+    </div>
 
-    <label for = "phone">Telefone</label>
-    <input type="number"
-      id = "phone"
-      name = "phone"
-      class = "form-control"
-      [(ngModel)] = "phone"
-      required>
 
-      <label for = "endereco">Endereço</label>
-      <input type="text"
-        id = "endereco"
-        name = "endereco"
-        class = "form-control"
-        [(ngModel)] = "endereco"
-        #enderecoInput = "ngModel"
-        required 
-        minlength="20"
-        [class.is-invalid]="enderecoInput.invalid && (enderecoInput.dirty || enderecoInput.touched)">
+    <div class="form-row mt-3">
+      <div class="form-group col-md-2">
+        <label for = "sex">Sexo</label>
+        <div class="radio">
+          <label><input type="radio" name="sex"> Masculino</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="sex"> Feminino</label>
+        </div>
+      </div>
+
+      <div class="form-group col-md-5">
+        <label for = "email">E-Mail</label>
+        <input type="email"
+          id = "email"
+          name = "email"
+          class = "form-control"
+          [(ngModel)] = "email"
+          placeholder = "joao@rede.ulbra.br"
+          required>
+      </div>
+
+      <div class="form-group col-md-5">
+        <label for = "phone">Telefone</label>
+        <input type="number"
+          id = "phone"
+          name = "phone"
+          class = "form-control"
+          [(ngModel)] = "phone"
+          placeholder = "63 99278-7871"
+          required>
+      </div>
+    </div>
       
-        <div *ngIf="enderecoInput.invalid && (enderecoInput.dirty || enderecoInput.touched)"
-              class="invalid-feedback">
-          <span *ngIf="enderecoInput.errors.minlength">
-            Você precisa informar no minimo 20 caracteres
-          </span>
-         
-        </div>
-    <label for = "estado">Estado</label>
-    <select 
-        id = "estado"
-        name="estado"
-        class = "form-control"
-        [(ngModel)] = "estado"
-        #estadoInput = "ngModel">
-        <option *ngFor="let estado of uf">{{estado}}</option>
-    </select>
-    <label for = "cep">CEP</label>
-      <input type="number"
-        id = "cep"
-        name = "cep"
-        class = "form-control"
-        [(ngModel)] = "cep"
-        #cepInput = "ngModel"
-        required 
-        [class.is-invalid]="cepInput.invalid && (cepInput.dirty || cepInput.touched)">
-      
-        <div *ngIf="cepInput.invalid && (cepInput.dirty || cepInput.touched)"
-              class="invalid-feedback">
-          <span *ngIf="cepInput.errors.required">
-            Você precisa informar o CEP
-          </span>
-         
-        </div>
 
-    <label for = "cidade">Cidade</label>
-    <input type="text"
-        id = "cidade"
-        name = "cidade"
-        class = "form-control"
-        [(ngModel)] = "cidade"
-        #cidadeInput = "ngModel"
-        required 
-        [class.is-invalid]="cidadeInput.invalid && (cidadeInput.dirty || cidadeInput.touched)">
-    <label for = "turma">Turmas {{documentos}}</label>
-    <select multiple
-        disabled={{!(documentos)}}
-        id = "turma"
-        name = "turma"
-        required 
-        class = "form-control"
-        [(ngModel)] = "turma"
-        #turmaInput = "ngModel"
-        [class.is-invalid]="turmaInput.invalid && (turmaInput.dirty || turmaInput.touched)">
-        <option *ngFor="let turma of turmas">{{turma}}</option>
-        <div *ngIf="turmaInput.invalid && (turmaInput.dirty || turmaInput.touched)"
-              class="invalid-feedback">
-        <span *ngIf="turmaInput.errors.required">
-            Você precisa informar alguma turma
+    <div class="form-row mt-3">
+      <div class="form-group col-md-12">
+        <label for = "endereco">Endereço</label>
+        <input type="text"
+          id = "endereco"
+          name = "endereco"
+          class = "form-control"
+          [(ngModel)] = "endereco"
+          #enderecoInput = "ngModel"
+          required 
+          minlength="30"
+          placeholder = "Rua Paraopeba 360"
+          [class.is-invalid]="enderecoInput.invalid && (enderecoInput.dirty || enderecoInput.touched)">
+        
+          <div *ngIf="enderecoInput.invalid && (enderecoInput.dirty || enderecoInput.touched)"
+                class="invalid-feedback">
+            <span *ngIf="enderecoInput.errors.minlength">
+              Você precisa informar no mínimo 20 caracteres
+            </span>
+            <span *ngIf="enderecoInput.errors.required">
+              Você precisa informar o Endereço
+            </span>
+          </div>
+      </div>
+    </div>
+
+
+    <div class="form-row mt-3">
+      <div class="form-group col-md-5">
+        <label for = "cidade">Cidade</label>
+        <input type="text"
+            id = "cidade"
+            name = "cidade"
+            class = "form-control"
+            [(ngModel)] = "cidade"
+            #cidadeInput = "ngModel"
+            placeholder = "Palmas"
+            required 
+            [class.is-invalid]="cidadeInput.invalid && (cidadeInput.dirty || cidadeInput.touched)">
+
+          <div *ngIf="cidadeInput.invalid && (cidadeInput.dirty || cidadeInput.touched)"
+            class="invalid-feedback">
+          <span *ngIf="cidadeInput.errors.required">
+            Você precisa informar a Cidade
           </span>
         </div>
-    </select>
-    <label for="documentos">Documentos:</label>
-        <div class="form-check">
+      </div>
+
+      <div class="form-group col-md-5">
+        <label for = "cep">CEP</label>
+        <input type="number"
+          id = "cep"
+          name = "cep"
+          class = "form-control"
+          [(ngModel)] = "cep"
+          #cepInput = "ngModel"
+          required
+          placeholder = "77500-000"
+          [class.is-invalid]="cepInput.invalid && (cepInput.dirty || cepInput.touched)">
+        
+          <div *ngIf="cepInput.invalid && (cepInput.dirty || cepInput.touched)"
+                class="invalid-feedback">
+            <span *ngIf="cepInput.errors.required">
+              Você precisa informar o CEP
+            </span>
+          </div>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for = "estado">Estado</label>
+        <select 
+            id = "estado"
+            name="estado"
+            class = "form-control"
+            [(ngModel)] = "estado"
+            #estadoInput = "ngModel">
+            <option *ngFor="let estado of uf">{{estado}}</option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="form-row mt-3">
+      <div class="form-group col-md-4">
+        <label for="documentos">Documentos:</label>
+        <div class="form-check ml-4">
         <input type="checkbox" class="form-check-input" id="documentos"
             name = "documentos"
             [(ngModel)]="documentos"  data-md-icheck (change)="checkboxTrue($event);">
-        <label class="form-check-label" for="documentos">Checado</label>
+        <label class="form-check-label" for="documentos">Checados</label>
       </div>
-   
-    <button class="btn btn-primary"
-      [disabled]="cadastro.invalid">
-      Salvar
-    </button>
+      </div>
+
+      <div class="form-group col-md-8">
+        <label for = "turma">Turmas</label>
+        <select multiple
+            disabled={{!(documentos)}}
+            id = "turma"
+            name = "turma"
+            required 
+            class = "form-control"
+            [(ngModel)] = "turma"
+            #turmaInput = "ngModel"
+            [class.is-invalid]="turmaInput.invalid && (turmaInput.dirty || turmaInput.touched)">
+            <option *ngFor="let turma of turmas">{{turma.number}} - {{turma.name}}</option>
+            <div *ngIf="turmaInput.invalid && (turmaInput.dirty || turmaInput.touched)"
+                  class="invalid-feedback">
+            <span *ngIf="turmaInput.errors.required">
+                Você precisa informar alguma turma
+              </span>
+            </div>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="text-center">
+      <div class="btn-group">
+        <button class="btn btn-primary mt-3"
+          [disabled]="cadastro.invalid">
+          Salvar
+        </button>
+
+        <button class="btn btn-secondary mt-3">
+          Limpar
+        </button>
+      </div>
+    </div>
 
   </form>
   </div>
